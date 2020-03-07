@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="wrap">
+    <scroll-view scroll-y='true' class="chat" scroll-top="{{scrollTop}}" id="tab-con">
+      <view class="list">
+        <view class="chat-news" wx:for="{{newslsit}}" wx:key="{{item.id}}">
+          <!-- 根据角色判断 -->
+          <block wx:if="{{item.role=='me'}}">
+            <!-- role 值为me  发送的消息显示在右侧 -->
+            <view class="news-if">
+              <text class="new-txt my">{{item.content}}</text>
+              <image class="new-img" src="http://img1.imgtn.bdimg.com/it/u=3819550809,2703379148&fm=11&gp=0.jpg"></image>
+            </view>
+          </block>
+          <!-- role  值为server 收到的消息显示在左侧 -->
+          <block wx:else>
+            <view class="news-rl">
+              <image class="new-img" src="http://img0.imgtn.bdimg.com/it/u=3256100974,305075936&fm=26&gp=0.jpg"></image>
+              <text class="new-text new-text">{{item.content}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 聊天输入 -->
+  <view class="message">
+    <form class="send-message">
+      <input type="text" cursor-spacing="80" bindinput="bindChange" placeholder="请输入聊天内容。。"></input>
+      <button type="primary" bindtap="send" formType="reset" size="small" button-hover="blue">发送</button>
+    </form>
+  </view>
+</view>
